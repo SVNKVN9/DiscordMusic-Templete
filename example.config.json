@@ -1,0 +1,10 @@
+{
+    "prefix": "PREFIX HERE",
+    "nodes": [
+        {
+            "host": "localhost",
+            "port": 2333,
+            "password": "password"
+        }
+    ]
+}
