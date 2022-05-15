@@ -9,5 +9,5 @@ const client = new Client({
 client.login(process.env.TOKEN);
 
 client.on('ready', () => {
-    console.log(`${client.user.tag} has ready`)
+    console.log(`[${new Date().toString().split(" ", 5).join(" ")}] ${client.user.tag} (${client.shard.ids}) has ready`)
 })
