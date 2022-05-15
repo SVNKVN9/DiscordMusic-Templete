@@ -1,5 +1,6 @@
 require('dotenv/config')
-const { Client, Intents } = require('discord.js')
+const { Client, Intents, Collection } = require('discord.js')
+const { readdirSync } = require('fs')
 
 const client = new Client({
     intents: new Intents( 32767 ),
@@ -7,7 +8,11 @@ const client = new Client({
 })
 
 client.login(process.env.TOKEN);
+client.commands = new Collection()
+client.aliases = new Collection()
+client.config = require('./config.json')
 
-client.on('ready', () => {
-    console.log(`[${new Date().toString().split(" ", 5).join(" ")}] ${client.user.tag} (${client.shard.ids}) has ready`)
-})
+const handlerFiles = readdirSync('./handlers').filter(file => file.endsWith('.js'))
+for(let file of handlerFiles) {
+    require(`./handlers/${file}`)(client)
+}
