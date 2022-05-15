@@ -2,7 +2,7 @@ module.exports = {
     name: 'play',
     aliases: ['p'],
     async execute(client, message, args) {
-        if (!message.member.voice.channel) return
+        if (!message.member.voice.channel) return message.channel.send({ content: 'เข้าห้องเสียงก่อน' })
         if (
             message.guild.me.voice.channel &&
             message.member.voice.channel.id !== message.guild.me.voice.channel.id
